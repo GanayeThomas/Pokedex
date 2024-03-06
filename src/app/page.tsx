@@ -88,7 +88,7 @@ export default function Home() {
     <main>
       <TypeFilter onTypeChange={handleTypeChange} />
       <PokemonCollection pokemons={filteredPokemons} />
-      <button className="rounded-lg bg-gray-400 mt-5" onClick={nextPage}>
+      <button className="p-2 rounded-lg bg-gray-400 mt-5" onClick={nextPage}>
         Charger plus
       </button>
     </main>
