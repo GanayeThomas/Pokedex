@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import ErrorComponent from "@/app/error";
+
 
 interface PokemonDetails {
   id: number; // Identifiant unique du Pokémon.
@@ -17,7 +17,7 @@ interface PokemonDetails {
 const PokemonDetailsPage: React.FC = () => {
   // Déclaration de l'état pour stocker les détails du Pokémon, initialisé à null.
   const [pokemonDetails, setPokemonDetails] = useState<PokemonDetails | null>(null);
-  const [error, setError] = useState<string | null>(null);
+
 
   useEffect(() => {
     // Définition de la fonction asynchrone pour récupérer les détails du Pokémon sélectionné.
@@ -49,7 +49,6 @@ const PokemonDetailsPage: React.FC = () => {
       } catch (error) {
         // Gestion des erreurs éventuelles lors des requêtes.
         console.error(`Erreur lors de la récupération des détails :`, error);
-        setError("une erreur s'est produite lors du chargement  des détails du pokémon.Veuillez réessayer plus tard.")
       }
     };
 
@@ -57,9 +56,6 @@ const PokemonDetailsPage: React.FC = () => {
     fetchPokemonDetails();
   }, []); // Le tableau de dépendances vide signifie que cet effet ne s'exécutera qu'une fois après le premier rendu.
 
-  if(error){
-    return <ErrorComponent message={error}/>
-  }
   // Affichage conditionnel : si les données du Pokémon ne sont pas encore chargées, afficher un message de chargement.
   if (!pokemonDetails) {
     return <div>Chargement...</div>;
